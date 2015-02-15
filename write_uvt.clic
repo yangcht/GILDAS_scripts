@@ -1,0 +1,42 @@
+!  
+! M82-CO
+!  
+!==== PUT THE RIGHT CALIBRATION HEADER ====  
+file in 16-dec-2011-M82-CO.hpb 
+!  
+set default 
+set scan 0 10000 
+set offset 0 0 
+set receiver 3
+set quality average
+set weight tsys on 
+set weight calibration on 
+set phase antenna atmospher internal relative      
+set amplitude antenna absolute jansky relative 
+set rf_passband antenna frequency file on 
+!==== CHOOSE THE RIGHT RECIEVER ====
+set selection line lsb widex 
+find /proc corr /sou SOURCE_NAME
+!==== INPUT THE TABLE NAME ====
+!==== RESAMPLE: OUTPUT CHANNEL NUMBER, REFERENCE CHANNEL, VELO/FREQ AND REFERENCE CHANNEL, RESOLUTION, VALUE TYPE (F: freq; V: velo) ====
+table T1-co new /resam 180 65 0 20 F
+
+
+!==== SECOND OBSERVATION ====
+!==== PUT THE RIGHT CALIBRATION HEADER ====  
+file in 18-dec-2011-M82-CO.hpb 
+!  
+set default 
+set scan 0 10000 
+set offset 0 0 
+set receiver 3
+set quality average
+set weight tsys on 
+set weight calibration on 
+set phase antenna atmospher internal relative      
+set amplitude antenna absolute jansky relative 
+set rf_passband antenna frequency file on 
+!==== CHOOSE THE RIGHT RECIEVER ====
+set selection line lsb widex 
+find /proc corr /sou SOURCE_NAME
+table 

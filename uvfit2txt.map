@@ -1,0 +1,26 @@
+!**  DEFINE THE VARIABLE 'sou1' AND THE FILENAME 
+! 'name'.uvfit
+  say 'name'
+  say  "please check the name before using this scripts"
+  say  "***********************************************"
+  
+!** INPUT THE var(sou1) NAME BELOW **
+  define image sou1 'name'.uvfit read
+!*************************************
+
+!** BELOW...FOR ON COMPONENT POINT SOURCE FITTING ONLY...
+
+  sic dele 'name'.dat
+  sic out 'name'.dat
+
+  for i 1 to sou1%dim[1]
+  say 'i' 'sou1[i,4]' 'sou1[i,12]' 'sou1[i,13]' 
+  next
+
+
+!** OR FOR TWO POINT COMPONENTS, BEFORE USING, UNCOMMENT IT
+! for i 1 to sou1%dim[1]
+! say 'i' 'sou1[i,4]' 'sou1[i,12]' 'sou1[i,13]' 'sou1[i,29]' 'sou1[i,30]'
+! next
+
+  sic out

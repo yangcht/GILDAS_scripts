@@ -1,0 +1,116 @@
+!clean all 
+cle a
+cle
+
+!set font SIMPLEX or DUPLEX
+set font SIMPLEX
+
+!Expands all characters or markers by a factor
+set expand 1.2
+
+!Set pen as solid lines and black color and thickness 2
+pen 0 /col 0 /weight 2
+
+!Load color table rainbow4
+lut rainbow4.lut
+
+!####### CHECK NOISE AND PUT HERE #######
+let noise = 8.8330073E-04 /new real
+!########################################
+
+!###########    LOAD IMAGE   ############
+image M82-CO.lmv-clean
+!########################################
+
+!######### DEFINE THE PLOT AREA #########
+tickspace 0 0 0 0 
+limits 5 -5 -5 5 second /rgdata
+!########################################
+ 
+! Set plot size
+set box_location 6 20 6 20
+ 
+plot !/scaling lin -1.e-4 2.5e-4
+
+!Plot the image in the first place
+pen 7 /weight 2
+g\box p p in /ABSOLUTE /LABEL 0 !/unit S
+pen 0 /weight 2
+
+! Plot the box
+! box p o in /unit S
+! label "R.A. (J2000)" /x
+! label "DEC (J2000)" /y
+! draw text -2. 0 "DEC (J2000)" 5 90 /box 4
+
+! Set the plot levels
+  level -2.0*noise 2.0*noise 4.0*noise 6.0*noise 8.0*noise 10.0*noise 12.0*noise 14.0*noise 16.0*noise 18.0*noise
+
+rgmap
+
+!DRAW THE COLORBAR
+set expand 1.0
+WEDGE right 
+set expand 1.2
+label "Jy/beam" /Y -30
+
+
+pen 0 /col 7 /weight 2.0
+draw relocate -0.00 -0.000-0.3-1.0 /USER seconds
+draw line -0.00 -0.000-0.3+1.0 /USER seconds
+draw line -0.00 -0.000-0.3 /USER seconds
+draw line -0.00-1.0 -0.000-0.3 /USER seconds
+draw line -0.00+1.0 -0.000-0.3 /USER seconds
+
+pen /def 
+pen /wei 2
+set angle sec
+
+
+!define real x[4] y[4]
+!let x[1] = 3.2
+!let x[2] = 0.0
+!let x[3] = 0
+!let x[4] = 3.2
+
+!let y[1] = 3.2
+!let y[2] = 3.2
+!let y[3] = 0.0
+!let y[4] = 0.0
+!connect x y /fill 7
+
+
+! ######## DRAW the box for putting beam inside ########
+pen 7 /weight 3
+draw relocate 14.0 0.0 /box !seconds
+draw line 14.0 3.0 /box !seconds
+draw line 11.0 3.0 /box !seconds
+draw line 11.0 0.0 /box !seconds
+draw line 14.0 0.0 /box !seconds
+pen 0 /weight 2
+! ######################################################
+
+
+! ######### CACULATE THE BEAM AND DRAW THE BEAM #########
+!beam: PA=aa; size=bb"xcc"
+
+ellipse bb/2 cc/2 90-aa /box 12.5 1.5 /fill 7
+ellipse bb/2 cc/2 90-aa /box 12.5 1.5 
+ellipse bb/2 cc/2 90-aa /box 12.5 1.5 /HATCH 0 45 0.2
+! #######################################################
+
+! Draw the beam using the a, b and PA given by "go view"
+
+pen 0 /col 7 /weight 3
+set character 0.9
+! ############ PUT THE SOURCE NAME #############
+draw text 4.5 4.5 "M82 CO" 3 /user 
+set character 0.6
+! ##############################################
+
+! ############## OUT PUT FILENAME ##############
+sic delete M82-CO.eps
+hardcopy  M82-CO /device eps color
+! ##############################################
+
+pen 0 /default
