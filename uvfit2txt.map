@@ -1,5 +1,3 @@
-!**  By Chentao YANG **
-
 !**  DEFINE THE VARIABLE 'sou1' AND THE FILENAME 
 ! 'name'.uvfit
   say 'name'
