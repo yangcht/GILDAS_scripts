@@ -1,10 +1,25 @@
-!----- Chentao Yang, yangcht@gmail.com
-!*********************************************************
-!**   1. SELECT THE SOURCE 'name' AND FILE TYPE 'type'  **
-!****  File type is suitable for any that works with  ****
-!****  the "GO VIEW" command.                         ****
-!**   2. CAREFULLY CHOOSE THE PLOYGEN                   **
-!*********************************************************
+!----- AUTHOR:                                            
+!      Chentao Yang, yangcht@gmail.com.                   
+!                                                         
+!----- FUNCTION:                                          
+!      Extract spectrum from images that works with       
+!      GILDAS. The region can be defined by user,         
+!      and the noise is calculated according to the       
+!      CLEANed image (be careful with your cleaning!).    
+!                                                         
+!----- INPUT (prompt, interactive):                       
+!      filename, file extension, polygon                  
+!                                                         
+!----- OUTPUT:                                            
+!      "name".dat; "name"."type".noi; "name"."type".gdf;  
+!                                                         
+!----- USAGE:                                             
+!      1. Select the source 'name' and filetype 'type'.   
+!         (Filetype can be uvfit, FITS, etc.).            
+!      2. Carefully choose the polygon for the integrated 
+!         region from Go view.                            
+!---------------------------------------------------------
+
 
   say "input type"
     let type &1

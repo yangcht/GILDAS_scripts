@@ -1,3 +1,22 @@
+!----- AUTHOR:                                            
+!      Chentao Yang, yangcht@gmail.com.                   
+!                                                         
+!----- FUNCTION:                                          
+!      Extract spectrum from UVFIT file. The noise is 
+!      calculated based on the UV-fitting procedure.   
+!                                                         
+!----- INPUT (prompt, interactive):                       
+!      filename, polygon                  
+!                                                         
+!----- OUTPUT:                                            
+!      "name".dat; 
+!                                                         
+!----- USAGE:                                             
+!      1. Select the source 'name'.            
+!      2. Carefully choose the polygon for the integrated 
+!         region from go view.                            
+!---------------------------------------------------------
+
 !**  DEFINE THE VARIABLE 'sou1' AND THE FILENAME 
 ! 'name'.uvfit
   say 'name'
