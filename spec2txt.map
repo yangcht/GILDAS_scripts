@@ -1,0 +1,45 @@
+!----- Chentao Yang, yangcht@gmail.com
+!*********************************************************
+!**   1. SELECT THE SOURCE 'name' AND FILE TYPE 'type'  **
+!****  File type is suitable for any that works with  ****
+!****  the "GO VIEW" command.                         ****
+!**   2. CAREFULLY CHOOSE THE PLOYGEN                   **
+!*********************************************************
+
+  say "input type"
+    let type &1
+  say "input name (without extension)"
+    let name &2
+
+!*** INPUT THE var(sou1) NAME BELOW ***
+  define image sou0 'name'.'type' read
+!**************************************
+
+  go view
+
+  say 'name'
+  say 'type'
+  say  "please check the name before using this scripts"
+  say  "***********************************************"
+  
+
+!** BELOW...FOR ON COMPONENT POINT SOURCE FITTING ONLY...
+
+  sic dele 'name'.dat
+  sic out 'name'.dat
+
+  for i 1 to sou0%dim[3]
+  let first i
+  let last i
+  go noise
+  say 'xspectre[i]'   'mspectre[i]'   'noise'
+  next
+
+  let first 1
+  let last sou0%dim[3]
+
+  sic out
+  
+  
+  $sed -i.bak '/Re-using/d' `ls -1t *.dat | head -1`
+ 
